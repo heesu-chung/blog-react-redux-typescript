@@ -37,6 +37,7 @@ const InfoWrapper = styled.div`
         margin-bottom: 0;
     }
     .post-wrapper {
+        flex: 1;
         .post-desc {
             font-size: 14px;
             font-weight: 300;
@@ -50,10 +51,10 @@ const InfoWrapper = styled.div`
     }
     .btn-wrapper {
         text-align: right;
+        flex: 2;
         .btn {
             width: 90px;
             height: 30px;
-
             font-weight: 300;
             font-size: 14px;
             text-decoration: none;
@@ -78,6 +79,9 @@ const InfoWrapper = styled.div`
             border: none;
             border: 1px solid #48d4cf;
             color: #48d4cf;
+        }
+        .github-link {
+            width: 63px;
         }
     }
 `;

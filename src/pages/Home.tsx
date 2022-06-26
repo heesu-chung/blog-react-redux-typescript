@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import HomeHeader from "../components/home/HomeHeader";
+import HomePostCard from "../components/home/HomePostCard";
 
 const HomeWrapper = styled.div`
     width: 100%;
@@ -58,6 +59,11 @@ const Home = () => {
                     <div className="portfolio menu">Portfolio</div>
                     <div className="Daily menu">Daily</div>
                 </HomeNav>
+
+                <HomePostCard />
+                <HomePostCard />
+                <HomePostCard />
+                <HomePostCard />
             </HomeContent>
         </HomeWrapper>
     );
