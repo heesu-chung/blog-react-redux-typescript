@@ -1,7 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import HomeHeader from "../components/home/HomeHeader";
 import HomePostCard from "../components/home/HomePostCard";
+import { IBlog, RootStore } from "../redux/Types";
 
 const HomeWrapper = styled.div`
     width: 100%;
@@ -48,6 +50,10 @@ const HomeNav = styled.div`
 `;
 
 const Home = () => {
+    const { blogs } = useSelector((state: RootStore) => state);
+
+    const posts = [...blogs];
+    console.log(posts);
     return (
         <HomeWrapper>
             <HomeCoverWall />
@@ -60,10 +66,9 @@ const Home = () => {
                     <div className="Daily menu">Daily</div>
                 </HomeNav>
 
-                <HomePostCard />
-                <HomePostCard />
-                <HomePostCard />
-                <HomePostCard />
+                {posts.map((doc: IBlog, idx: number) => (
+                    <HomePostCard key={doc.number} doc={doc} />
+                ))}
             </HomeContent>
         </HomeWrapper>
     );

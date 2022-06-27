@@ -91,7 +91,7 @@ const CardImage = styled.div`
     }
 `;
 
-const HomePostCard = () => {
+const HomePostCard = ({ doc }: any) => {
     return (
         <Link
             to="/view-post"
