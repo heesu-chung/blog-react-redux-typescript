@@ -1,5 +1,7 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { RootStore } from "../../redux/Types";
 
 const TitleCoverWrapper = styled.div`
     .title-cover {
@@ -63,16 +65,17 @@ const TitleInfoWrapper = styled.div`
 `;
 
 const PostTitleCover = () => {
+    const { blog } = useSelector((state: RootStore) => state);
     return (
         <TitleCoverWrapper>
             <div className="title-cover" />
             <TitleInfoWrapper>
-                <h1 className="title">This is Title</h1>
-                <p className="subtitle">This is SubTitle</p>
+                <h1 className="title">{blog.title}</h1>
+                <p className="subtitle">{blog.subTitle}</p>
                 <div className="article-info">
                     <span className="by">by </span>
                     <span className="author">데데뎁 Dededef · </span>
-                    <span className="date">2022 06. 26</span>
+                    <span className="date">{blog.date}</span>
                 </div>
             </TitleInfoWrapper>
         </TitleCoverWrapper>

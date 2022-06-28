@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import HomeHeader from "../components/home/HomeHeader";
 import HomePostCard from "../components/home/HomePostCard";
 import { IBlog, RootStore } from "../redux/Types";
@@ -27,7 +27,7 @@ const HomeContent = styled.div`
     }
 `;
 
-const HomeNav = styled.div`
+const HomeNav = styled.div<{ contents: number }>`
     width: 100%;
     margin-top: 50px;
 
@@ -47,28 +47,91 @@ const HomeNav = styled.div`
             color: #555;
         }
     }
+    ${(props) =>
+        props.contents === 1 &&
+        css`
+            .about {
+                color: black;
+                border-top: 1px solid black;
+                font-weight: 500;
+            }
+        `}
+    ${(props) =>
+        props.contents === 2 &&
+        css`
+            .posts {
+                color: black;
+                border-top: 1px solid black;
+                font-weight: 500;
+            }
+        `}
+    ${(props) =>
+        props.contents === 3 &&
+        css`
+            .portfolio {
+                color: black;
+                border-top: 1px solid black;
+                font-weight: 500;
+            }
+        `}
+    ${(props) =>
+        props.contents === 4 &&
+        css`
+            .daily {
+                color: black;
+                border-top: 1px solid black;
+                font-weight: 500;
+            }
+        `}
 `;
 
 const Home = () => {
     const { blogs } = useSelector((state: RootStore) => state);
-
     const posts = [...blogs];
-    console.log(posts);
+    const [contents, setContents] = useState(2);
+
+    const handleContents = (params: number) => {
+        setContents(params);
+    };
+
     return (
         <HomeWrapper>
             <HomeCoverWall />
             <HomeContent>
                 <HomeHeader />
-                <HomeNav>
-                    <div className="about menu">About</div>
-                    <div className="posts menu">Posts</div>
-                    <div className="portfolio menu">Portfolio</div>
-                    <div className="Daily menu">Daily</div>
+                <HomeNav contents={contents}>
+                    <div
+                        className="about menu"
+                        onClick={() => handleContents(1)}
+                    >
+                        About
+                    </div>
+                    <div
+                        className="posts menu"
+                        onClick={() => handleContents(2)}
+                    >
+                        Posts
+                    </div>
+                    <div
+                        className="portfolio menu"
+                        onClick={() => handleContents(3)}
+                    >
+                        Portfolio
+                    </div>
+                    <div
+                        className="daily menu"
+                        onClick={() => handleContents(4)}
+                    >
+                        Daily
+                    </div>
                 </HomeNav>
-
-                {posts.map((doc: IBlog, idx: number) => (
-                    <HomePostCard key={doc.number} doc={doc} />
-                ))}
+                {contents === 1 && <div className="container"></div>}
+                {contents === 2 &&
+                    posts.map((doc: IBlog, idx: number) => (
+                        <HomePostCard key={doc.number} doc={doc} />
+                    ))}
+                {contents === 3}
+                {contents === 4}
             </HomeContent>
         </HomeWrapper>
     );

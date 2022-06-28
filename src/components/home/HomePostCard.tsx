@@ -92,18 +92,32 @@ const CardImage = styled.div`
 `;
 
 const HomePostCard = ({ doc }: any) => {
+    const { title, desc, date, category } = doc;
+
+    const dateForm = (param: string) => {
+        const item: any = param.split(" ");
+        const day = item.slice(0, 3).join(" ");
+        const ampm = item.slice(3, 4).join("") === "오후" ? 12 : 0;
+        let hour = item.slice(4).join("").split(":");
+        hour[0] = Number(hour[0]) + ampm;
+        return day + " " + hour.slice(0, 2).join(":");
+    };
+    const newDate = dateForm(date);
+
     return (
         <Link
-            to="/view-post"
+            to={`/view-post/${title}`}
             className="link"
             style={{ textDecoration: "none", color: "black" }}
         >
             <HomePostCardWrapper>
                 <CardContent>
-                    <CategoryBlock />
-                    <h2 className="title">This is Title</h2>
-                    <p className="desc">about desc</p>
-                    <h5 className="date">2022. 6. 26</h5>
+                    {category.map((doc: string, index: number) => (
+                        <CategoryBlock key={index} doc={doc} />
+                    ))}
+                    <h2 className="title">{title}</h2>
+                    <p className="desc">{desc.slice(0, 85)}...</p>
+                    <h5 className="date">{newDate}</h5>
                 </CardContent>
                 <CardImage>
                     {/* <img

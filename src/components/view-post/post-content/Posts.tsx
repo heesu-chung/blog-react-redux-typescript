@@ -22,6 +22,7 @@ const PostWrapper = styled.div`
 
     .date {
         font-size: 11px;
+        font-weight: 300;
         text-align: right;
         padding: 5px;
         padding-right: 15px;
@@ -29,12 +30,13 @@ const PostWrapper = styled.div`
     }
 `;
 
-const Posts = () => {
+const Posts = (doc: any) => {
+    const { title, date } = doc.doc;
     return (
         <Link to="/view-post" style={{ textDecoration: "none" }}>
             <PostWrapper>
-                <h3 className="title">this is title</h3>
-                <h6 className="date">2022. 06. 26</h6>
+                <h3 className="title">{title}</h3>
+                <h6 className="date">{date}</h6>
             </PostWrapper>
         </Link>
     );

@@ -9,7 +9,7 @@ export interface IGetHomeBlogsType {
 
 const blogsInit: [] = [];
 
-const blogReducer = (state: IBlog[] = blogsInit, action: IBlogType) => {
+const blogReducer = (state: [] = blogsInit, action: IBlogType) => {
     switch (action.type) {
         case GET_HOME_BLOGS:
             return action.payload;

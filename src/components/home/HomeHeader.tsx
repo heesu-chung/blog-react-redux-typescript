@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootStore } from "../../redux/Types";
 
 const HeaderWrapper = styled.div`
     width: 100%;
@@ -87,6 +89,9 @@ const InfoWrapper = styled.div`
 `;
 
 const HomeHeader = () => {
+    const { blogs } = useSelector((state: RootStore) => state);
+    const postsLen = [...blogs].length;
+
     return (
         <HeaderWrapper>
             <HeaderIntro>
@@ -99,7 +104,7 @@ const HomeHeader = () => {
                 <InfoWrapper>
                     <div className="post-wrapper">
                         <div className="post-desc">포스트</div>
-                        <div className="post-info">1234</div>
+                        <div className="post-info">{postsLen}</div>
                     </div>
                     <div className="btn-wrapper">
                         <Link to="/create-post" className="create-post">

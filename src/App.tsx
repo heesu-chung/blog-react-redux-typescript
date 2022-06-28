@@ -24,8 +24,7 @@ function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch<any>(getHomeBlogs);
-        console.log("dispatch");
+        dispatch<any>(getHomeBlogs());
     }, [dispatch]);
 
     return (
@@ -37,8 +36,10 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/home" element={<Navigate replace to="/" />} />
                     <Route path="/view-post" element={<ViewPost />} />
+                    <Route path="/view-post/:title" element={<ViewPost />} />
                     <Route path="/create-post" element={<CreatePost />} />
                     <Route path="/post-list" element={<PostList />} />
+                    <Route path="/post-list/:category" element={<PostList />} />
                 </Routes>
             </BrowserRouter>
         </AppWrapper>

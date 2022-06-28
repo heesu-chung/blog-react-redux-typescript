@@ -16,11 +16,11 @@ export interface IAlert {
 }
 
 export interface IBlog {
-    title: string | null;
-    subTitle: string | null;
-    content: string | null;
-    number: number | null;
-    desc: string | null;
-    date: string | null;
-    category: string[] | undefined;
+    title: string;
+    subTitle: string;
+    content: string;
+    number: number;
+    desc: string;
+    date: string;
+    category: string[];
 }

@@ -14,7 +14,6 @@ export const getHomeBlogs =
         const blog = db.collection("posts");
 
         try {
-            console.log("getHomeBlogs exec");
             let arr: any = [];
             await blog
                 .orderBy("date", "desc")
@@ -36,10 +35,11 @@ export const getHomeBlogs =
     };
 
 export const getBlog =
-    (id: string | undefined, blogs: []) =>
+    (title: string | undefined, blogs: []) =>
     async (dispatch: Dispatch<IGetBlogType>) => {
         try {
-            const blog = blogs.filter((el: any) => el.id);
+            const blog = [...blogs].filter((el: any) => title === el.title);
+
             dispatch({
                 type: GET_BLOG,
                 payload: blog[0],

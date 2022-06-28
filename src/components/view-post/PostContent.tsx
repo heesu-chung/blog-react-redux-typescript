@@ -1,5 +1,8 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { RootStore } from "../../redux/Types";
+import CategoryBlock from "../category/CategoryBlock";
 import HomeHeader from "../home/HomeHeader";
 import PostMorePost from "./post-content/PostMorePost";
 
@@ -32,13 +35,18 @@ const PostContentBlock = styled.div`
 `;
 
 const PostContent = () => {
+    const { blog } = useSelector((state: RootStore) => state);
+    const categoryArr = blog.category;
     return (
         <PostContentWrapper>
             <PostContentBlock>
                 <div
                     className="article"
-                    dangerouslySetInnerHTML={{ __html: "" }}
+                    dangerouslySetInnerHTML={{ __html: blog.content }}
                 />
+                {[...categoryArr].map((doc: string, index) => (
+                    <CategoryBlock key={index} doc={doc} op={"post"} />
+                ))}
                 <HomeHeader />
                 <PostMorePost />
             </PostContentBlock>
